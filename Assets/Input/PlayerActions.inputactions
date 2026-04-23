@@ -3,13 +3,31 @@
     "name": "PlayerActions",
     "maps": [
         {
-            "name": "PlayerActions",
-            "id": "654ff9e0-ce73-4885-a65d-e365450cbdfa",
+            "name": "OnFoot",
+            "id": "bfc0d05f-355e-4453-bf79-00b53173c232",
             "actions": [
+                {
+                    "name": "Movement",
+                    "type": "Value",
+                    "id": "7fda118f-505c-49eb-8572-738fa993ecb2",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "ef85508a-3c96-4d8b-a6bb-5656fe6def02",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
                 {
                     "name": "Shoot",
                     "type": "Button",
-                    "id": "97dd4396-7b17-41cc-a4f5-f7dd7e9559cf",
+                    "id": "3fe7f33f-5415-425e-b9a1-31efd335c21b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -18,8 +36,74 @@
             ],
             "bindings": [
                 {
+                    "name": "2D Vector",
+                    "id": "1830339d-26b6-4e12-b1ae-7842b7246da7",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Up",
+                    "id": "8f7524a1-3f61-4fa1-9014-dfbccd5fd164",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Down",
+                    "id": "fd55a95d-f5a4-4007-a767-7c08b4487373",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Left",
+                    "id": "4896958d-7a3a-40ae-b445-67cd5ef78185",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Right",
+                    "id": "b7a08609-1885-4d80-b906-3b553b39a650",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
-                    "id": "c4aa0f7f-e9b9-4340-a9ad-7c0bcfd38f8b",
+                    "id": "d4f7d6f5-2d73-4898-9ea1-450a01717824",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cce4ee92-336f-4036-9537-566c084f6670",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
