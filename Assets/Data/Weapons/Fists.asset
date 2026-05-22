@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e54611dcacdb0849952971c8ed9eb0d, type: 3}
   m_Name: Fists
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
-  damageW: 0
-  tCritW: 0
-  dCritW: 0
-  attackSpeedW: 0
+  damageW: 1
+  tCritW: 5
+  dCritW: 10
+  attackSpeedW: 1
+  rangeW: 1

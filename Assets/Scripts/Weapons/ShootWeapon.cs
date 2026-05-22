@@ -5,4 +5,10 @@ public class ShootWeapon : Weapon
 {
     public int nbrBullet;
     public float reloadTime;
+    public GameObject bulletPrefab;
+
+    public override void ExecuteAttack(Transform attackPoint)
+    {
+        Instantiate(bulletPrefab, attackPoint.position, attackPoint.rotation);
+    }
 }

@@ -16,11 +16,9 @@ public class DungeonManager : MonoBehaviour
     [SerializeField] private Transform dungeonParent; // Un objet vide pour ranger le donjon
 
     [Header("Prefabs des Salles (0 à 15)")]
-    // Créé un tableau de 16 cases dans l'inspecteur Unity
-    // L'index du tableau correspondra à l'ID calculé par le bitmasking.
+    // L'index du tableau correspond à l'ID calculé par le bitmasking
     [SerializeField] private GameObject[] roomPrefabs = new GameObject[16];
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         roomTab = new List<Room>();
@@ -32,7 +30,7 @@ public class DungeonManager : MonoBehaviour
         List<bool> isClose = new List<bool>();
         for (int i = 0; i < 4; i++)
             isClose.Add(false);
-        roomTab.Add(new Room(0,0, sorties, isClose));
+        roomTab.Add(new Room(0, 0, sorties, isClose, 0));
 
         int roomIdx = 1;
         
@@ -82,6 +80,7 @@ public class DungeonManager : MonoBehaviour
             {
                 if(roomTab[i].isClose[j] == false)
                 {
+                    int ennemisNbr = Random.Range(1,7);
                     switch(roomTab[i].sorties[j])
                     {
                         case Room.Direction.UP:
@@ -89,7 +88,7 @@ public class DungeonManager : MonoBehaviour
                             endSortieUp.Add(Room.Direction.DOWN);
                             List<bool> endIsCloseUp = new List<bool>();
                             endIsCloseUp.Add(true);
-                            Room lastRoomUp = new Room(roomTab[i].x, roomTab[i].y + 1, endSortieUp, endIsCloseUp);
+                            Room lastRoomUp = new Room(roomTab[i].x, roomTab[i].y + 1, endSortieUp, endIsCloseUp, ennemisNbr);
                             checkRoomPositions(lastRoomUp);
                             break;
                         case Room.Direction.DOWN:
@@ -97,7 +96,7 @@ public class DungeonManager : MonoBehaviour
                             endSortieDown.Add(Room.Direction.UP);
                             List<bool> endIsCloseDown = new List<bool>();
                             endIsCloseDown.Add(true);
-                            Room lastRoomDown = new Room(roomTab[i].x, roomTab[i].y - 1, endSortieDown, endIsCloseDown);
+                            Room lastRoomDown = new Room(roomTab[i].x, roomTab[i].y - 1, endSortieDown, endIsCloseDown, ennemisNbr);
                             checkRoomPositions(lastRoomDown);
                             break;
                         case Room.Direction.LEFT:
@@ -105,7 +104,7 @@ public class DungeonManager : MonoBehaviour
                             endSortieLeft.Add(Room.Direction.RIGHT);
                             List<bool> endIsCloseLeft = new List<bool>();
                             endIsCloseLeft.Add(true);
-                            Room lastRoomLeft = new Room(roomTab[i].x - 1, roomTab[i].y, endSortieLeft, endIsCloseLeft);
+                            Room lastRoomLeft = new Room(roomTab[i].x - 1, roomTab[i].y, endSortieLeft, endIsCloseLeft, ennemisNbr);
                             checkRoomPositions(lastRoomLeft);
                             break;
                         case Room.Direction.RIGHT:
@@ -113,7 +112,7 @@ public class DungeonManager : MonoBehaviour
                             endSortieRight.Add(Room.Direction.LEFT);
                             List<bool> endIsCloseRight = new List<bool>();
                             endIsCloseRight.Add(true);
-                            Room lastRoomRight = new Room(roomTab[i].x + 1, roomTab[i].y, endSortieRight, endIsCloseRight);
+                            Room lastRoomRight = new Room(roomTab[i].x + 1, roomTab[i].y, endSortieRight, endIsCloseRight, ennemisNbr);
                             checkRoomPositions(lastRoomRight);
                             break;
                         default:
@@ -130,7 +129,7 @@ public class DungeonManager : MonoBehaviour
         // Instancier le joueur apres la generation des salles
         GameObject player = Instantiate(playerPrefab, new Vector2(roomTab[0].x, roomTab[0].y), Quaternion.identity);
         
-        RoomManager.instance.SetCameraTarget(player.transform);
+        RoomManager.instance.SetCameraTarget();
         RoomManager.instance.EnterRoom(roomList[0].gameObject.GetComponent<BoxCollider2D>());
     }
 
@@ -140,7 +139,6 @@ public class DungeonManager : MonoBehaviour
         List<bool> isClose = new List<bool>();
 
         float x = currentRoom.x, y = currentRoom.y;
-        //Debug.Log("CurrentRoom pos : " + x + " , " + y);
 
         NextSorties.Add(pDirection);
         isClose.Add(true);
@@ -252,8 +250,10 @@ public class DungeonManager : MonoBehaviour
                     break;
             }
         }
+        int ennemisNbr = Random.Range(1, 7);
+
         //Debug.Log("newRoomPos = " + x + " , " + y);
-        return new Room(x, y, NextSorties, isClose);
+        return new Room(x, y, NextSorties, isClose, ennemisNbr);
     }
 
     private void checkRoomPositions(Room newRoom)
@@ -262,8 +262,6 @@ public class DungeonManager : MonoBehaviour
         {
             if(newRoom.x == room.x && newRoom.y == room.y)
             {
-                //Debug.Log("2 room meme endroit");
-
                 bool isExist = false;
                 // Modifier room pour y ajouter les sorties de newRoom
                 for (int i = 0; i < newRoom.sorties.Count; i++)
@@ -278,7 +276,6 @@ public class DungeonManager : MonoBehaviour
                     }
                     if(!isExist)
                     {
-                        //newRoom.isClose[i] = true;
                         room.sorties.Add(newRoom.sorties[i]);
                         room.isClose.Add(newRoom.isClose[i]);
                     }
@@ -308,6 +305,7 @@ public class DungeonManager : MonoBehaviour
 
             Vector3 spawnPosition = new Vector3(room.x * roomWidth, room.y * roomHeight, 0);
             GameObject obj = Instantiate(roomPrefabs[roomID], spawnPosition, Quaternion.identity, dungeonParent);
+            obj.GetComponent<RoomTrigger>().SpawnMobs(room.ennemisNbr);
             roomList.Add(obj);
         }
     }
@@ -330,22 +328,4 @@ public class DungeonManager : MonoBehaviour
 
         return id;
     }
-
-    /*
-    public void addRoomInTab(GameObject room)
-    {
-        bool roomExist = false;
-        for (int i = 0; i < roomTab.Count; i++)
-        {
-            if (roomTab[i].name == room.name)
-            {
-                roomExist = true;
-            }
-        }
-        if (!roomExist)
-        {
-            roomTab.Add(room);
-        }
-    }
-    */
 }

@@ -25,6 +25,7 @@ public class RoomManager : MonoBehaviour
 
     public void EnterRoom(Collider2D roomCollider)
     {
+        //Debug.Log("Enter Room");
         if (roomCollider == null) return;
         if (!_activeRooms.Contains(roomCollider))
         {
@@ -35,6 +36,7 @@ public class RoomManager : MonoBehaviour
 
     public void ExitRoom(Collider2D roomCollider)
     {
+        //Debug.Log("Exit Room");
         if (_activeRooms.Contains(roomCollider))
         {
             _activeRooms.Remove(roomCollider);
@@ -44,7 +46,8 @@ public class RoomManager : MonoBehaviour
 
     private void UpdateCameraConfiner()
     {
-        if (_confiner == null) _confiner = GetComponent<CinemachineConfiner2D>();
+        // this != null obligatoire afin d'éviter une erreur à la fermeture du jeu (??????)
+        if (_confiner == null && this != null) _confiner = GetComponent<CinemachineConfiner2D>();
 
         if (_activeRooms.Count > 0)
         {
@@ -58,9 +61,9 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    public void SetCameraTarget(Transform playerTransform)
+    public void SetCameraTarget()
     {
-        GetComponent<CinemachineCamera>().Follow = playerTransform;
+        GetComponent<CinemachineCamera>().Follow = GameManager.player.transform;
 
     }
 }
