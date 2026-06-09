@@ -2519,7 +2519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
   spawnPointList:
-  - {fileID: 2353433634683456743}
+  - {fileID: 4431607733511965885}
   - {fileID: 2353433634683456743}
   - {fileID: 6618385093584958356}
   - {fileID: 2447579092783224846}

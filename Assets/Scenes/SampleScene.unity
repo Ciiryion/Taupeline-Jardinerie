@@ -577,6 +577,7 @@ MonoBehaviour:
   - {fileID: 7348213880965547045, guid: 4b7662e50d58e6149b61283f5da8205f, type: 3}
   - {fileID: 7348213880965547045, guid: e51e44c705cee4f40a4b3f4b7e083ba4, type: 3}
   - {fileID: 8535252754140683099, guid: 9ef80750050c22247bc2f8b5314f830f, type: 3}
+  keyPrefab: {fileID: 4287831556175605065, guid: 87ba86100a9b0db4eafd27f151dc9aad, type: 3}
 --- !u!1 &1636257294
 GameObject:
   m_ObjectHideFlags: 0

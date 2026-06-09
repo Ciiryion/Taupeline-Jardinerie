@@ -7,6 +7,7 @@ public class Room
     public List<bool> isClose;
     public List<Direction> sorties;
     public int ennemisNbr = 0;
+    public Type type = Type.Normal;
 
     public enum Direction
     {
@@ -14,6 +15,13 @@ public class Room
         DOWN,
         LEFT,
         RIGHT
+    }
+
+    public enum Type
+    {
+        Normal,
+        KeyRoom,
+        Shop
     }
 
     public Room(float x, float y, List<Direction> sorties, List<bool> isClose, int ennemisNbr)

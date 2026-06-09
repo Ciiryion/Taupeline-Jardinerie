@@ -21,6 +21,10 @@ public class DungeonManager : MonoBehaviour
     // L'index du tableau correspond à l'ID calculé par le bitmasking
     [SerializeField] private GameObject[] roomPrefabs = new GameObject[16];
 
+    [Space]
+    [SerializeField] private GameObject keyPrefab;
+    [SerializeField] private GameObject doorPrefab;
+
     void Start()
     {
         roomTab = new List<Room>();
@@ -124,6 +128,8 @@ public class DungeonManager : MonoBehaviour
                 }
             }
         }
+
+        AssignSpecialRooms();
 
         // Instancier les salles
         GenerateVisualDungeon();
@@ -318,6 +324,41 @@ public class DungeonManager : MonoBehaviour
             GameObject obj = Instantiate(roomPrefabs[roomID], spawnPosition, Quaternion.identity, dungeonParent);
             obj.GetComponent<RoomTrigger>().SpawnMobs(room.ennemisNbr);
             roomList.Add(obj);
+
+            // Instantiation de la clé
+            if (room.type == Room.Type.KeyRoom)
+                Instantiate(keyPrefab, spawnPosition, Quaternion.identity, obj.transform);
+
+            // Instantiation de la porte du magasin
+            if (room.type == Room.Type.Shop)
+            {
+                foreach (Room.Direction dir in room.sorties)
+                {
+                    Vector3 doorPosition = spawnPosition;
+                    Quaternion doorRotation = Quaternion.identity;
+
+                    // On décale la position vers le bord de la salle en fonction de la direction
+                    switch (dir)
+                    {
+                        case Room.Direction.UP:
+                            doorPosition += new Vector3(0, roomHeight / 2f, 0);
+                            break;
+                        case Room.Direction.DOWN:
+                            doorPosition += new Vector3(0, -roomHeight / 2f, 0);
+                            break;
+                        case Room.Direction.LEFT:
+                            doorPosition += new Vector3(-roomWidth / 2f, 0, 0);
+                            doorRotation = Quaternion.Euler(0, 0, 90f);
+                            break;
+                        case Room.Direction.RIGHT:
+                            doorPosition += new Vector3(roomWidth / 2f, 0, 0);
+                            doorRotation = Quaternion.Euler(0, 0, 90f);
+                            break;
+                    }
+
+                    Instantiate(doorPrefab, doorPosition, doorRotation, obj.transform);
+                }
+            }
         }
     }
 
@@ -374,5 +415,33 @@ public class DungeonManager : MonoBehaviour
         maxWorldY = Mathf.CeilToInt((maxRoomY * roomHeight) + marginY);
 
         //Debug.Log($"Limites du donjon calculées : X[{minWorldX} à {maxWorldX}] et Y[{minWorldY} à {maxWorldY}]");
+    }
+
+    private void AssignSpecialRooms()
+    {
+        List<Room> candidateRoom = roomTab.GetRange(1, roomTab.Count - 1);
+
+        // Mélange de la liste des candidats
+        for(int i = 0; i < candidateRoom.Count; i++)
+        {
+            Room temp = candidateRoom[i];
+            int rndIdx = Random.Range(i, candidateRoom.Count);
+            candidateRoom[i] = candidateRoom[rndIdx];
+            candidateRoom[rndIdx] = temp;
+        }
+
+        // Tri sur le nombre de sorties pour avoir avant tout les culs de sacs
+        candidateRoom.Sort((roomA, roomB) => roomA.sorties.Count.CompareTo(roomB.sorties.Count));
+
+
+        candidateRoom[0].type = Room.Type.Shop;
+        candidateRoom[0].ennemisNbr = 0;
+
+        candidateRoom[1].type = Room.Type.KeyRoom;
+
+        
+
+        Debug.Log($"Shop en ({candidateRoom[0].x}, {candidateRoom[0].y}) avec {candidateRoom[0].sorties.Count} sorties");
+        Debug.Log($"Clé en ({candidateRoom[1].x}, {candidateRoom[1].y}) avec {candidateRoom[1].sorties.Count} sorties");
     }
 }
