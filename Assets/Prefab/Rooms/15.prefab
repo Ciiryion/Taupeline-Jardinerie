@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2432756754051115429
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1043793057430982109}
-  m_Layer: 0
-  m_Name: EnnemisSpawnPoint (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1043793057430982109
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2432756754051115429}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3821983648637860990}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2666990948678795911
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +74,7 @@ GameObject:
   - component: {fileID: 4966774877206230910}
   - component: {fileID: 6017133130555923998}
   - component: {fileID: 7535661382820924373}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Walls
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -721,7 +690,7 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!1 &5899288594360703783
+--- !u!1 &4297589539358474721
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -729,24 +698,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7642698650419902164}
+  - component: {fileID: 581388155330798100}
   m_Layer: 0
-  m_Name: EnnemisSpawnPoint (3)
+  m_Name: EnnemisSpawnPoint (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7642698650419902164
+--- !u!4 &581388155330798100
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5899288594360703783}
+  m_GameObject: {fileID: 4297589539358474721}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -849,10 +818,9 @@ Transform:
   m_Children:
   - {fileID: 4431607733511965885}
   - {fileID: 2353433634683456743}
-  - {fileID: 1043793057430982109}
-  - {fileID: 7642698650419902164}
   - {fileID: 6618385093584958356}
   - {fileID: 2447579092783224846}
+  - {fileID: 581388155330798100}
   - {fileID: 5913595491596005509}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2551,10 +2519,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
   spawnPointList:
-  - {fileID: 4431607733511965885}
   - {fileID: 2353433634683456743}
-  - {fileID: 1043793057430982109}
-  - {fileID: 7642698650419902164}
+  - {fileID: 2353433634683456743}
   - {fileID: 6618385093584958356}
   - {fileID: 2447579092783224846}
+  - {fileID: 581388155330798100}
   prefMob: {fileID: 678822489345167525, guid: 5c90c776d25d31e4c9f43750e6083db5, type: 3}

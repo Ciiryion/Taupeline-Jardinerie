@@ -1730,6 +1730,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41a23f6e776d6d48b06ba8c91c9dde6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
+  spawnPointList: []
+  prefMob: {fileID: 0}
 --- !u!1 &8471975967211728774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,7 +1744,7 @@ GameObject:
   - component: {fileID: 6569861158583660566}
   - component: {fileID: 8487495577759905536}
   - component: {fileID: 5989693543418008327}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Walls
   m_TagString: Wall
   m_Icon: {fileID: 0}

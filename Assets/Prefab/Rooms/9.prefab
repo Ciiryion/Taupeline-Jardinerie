@@ -36,7 +36,6 @@ Transform:
   - {fileID: 5863400625769347944}
   - {fileID: 7436173861836831887}
   - {fileID: 6765892438862477348}
-  - {fileID: 89468179709294030}
   - {fileID: 5493132393002950914}
   - {fileID: 4347986152814082343}
   - {fileID: 3083017249607736437}
@@ -1740,7 +1739,6 @@ MonoBehaviour:
   - {fileID: 5863400625769347944}
   - {fileID: 7436173861836831887}
   - {fileID: 6765892438862477348}
-  - {fileID: 89468179709294030}
   - {fileID: 5493132393002950914}
   - {fileID: 4347986152814082343}
   prefMob: {fileID: 678822489345167525, guid: 5c90c776d25d31e4c9f43750e6083db5, type: 3}
@@ -1769,7 +1767,7 @@ Transform:
   m_GameObject: {fileID: 5444392257780313469}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1806,37 +1804,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4067115226409734372}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6322562416447440011
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 89468179709294030}
-  m_Layer: 0
-  m_Name: EnnemisSpawnPoint (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &89468179709294030
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6322562416447440011}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4067115226409734372}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8034566157294416564
 GameObject:
   m_ObjectHideFlags: 0
@@ -1849,7 +1816,7 @@ GameObject:
   - component: {fileID: 8409520742574452671}
   - component: {fileID: 3663803276250002801}
   - component: {fileID: 7701297437655374354}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Walls
   m_TagString: Wall
   m_Icon: {fileID: 0}

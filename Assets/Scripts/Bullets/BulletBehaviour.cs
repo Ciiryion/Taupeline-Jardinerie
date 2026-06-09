@@ -31,7 +31,7 @@ public class BulletBehaviour : ObjectBehaviour<BulletInstance, BulletState, Bull
         if (ennemi != null)
         {
             Destroy(gameObject);
-            ennemi.Hit();
+            ennemi.Hit(Data.damage, transform.right);
         }
 
 

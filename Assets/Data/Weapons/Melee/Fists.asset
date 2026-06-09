@@ -16,4 +16,7 @@ MonoBehaviour:
   tCritW: 5
   dCritW: 10
   attackSpeedW: 1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 8
   rangeW: 1

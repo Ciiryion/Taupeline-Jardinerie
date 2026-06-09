@@ -12,5 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1885e2c86c22ced4b9da1367ebd14b6a, type: 3}
   m_Name: BasicEnnemis
   m_EditorClassIdentifier: Assembly-CSharp::EnnemisData
-  walkSpeed: 1
+  walkSpeed: 4
   maxLife: 5
+  kbForce: 50
+  detectionRadius: 7
+  aggroRadius: 12
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  pathUpdateInterval: 0.2
+  Weapon: {fileID: 0}

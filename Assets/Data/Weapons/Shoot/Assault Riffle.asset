@@ -16,6 +16,9 @@ MonoBehaviour:
   tCritW: 5
   dCritW: 10
   attackSpeedW: 10
-  nbrBullet: 5
-  reloadTime: 1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  nbrBullet: 10
+  reloadTime: 3
   bulletPrefab: {fileID: 6933927794012709915, guid: a9d14df0496a1804586fb1523c073216, type: 3}

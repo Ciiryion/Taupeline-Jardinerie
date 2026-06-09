@@ -7,5 +7,7 @@ public class PlayerState : ObjectState<PlayerData>
     public float targetAngle;
     public bool isAttacking;
     public Weapon currentWeapon;
+    public int nbrBullet;
     public float nextAttackTime;
+    public bool isReloading;
 }

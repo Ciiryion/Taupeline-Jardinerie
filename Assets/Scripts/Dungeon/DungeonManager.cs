@@ -5,15 +5,17 @@ public class DungeonManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab;
 
+    [SerializeField] private GridManager gridManager;
+
     [SerializeField] private int maxRoomNbr = 15;
     [SerializeField] private int probTaille = 5;
     private List<Room> roomTab;
     private List<GameObject> roomList;
 
     [Header("Paramètre d'une room")]
-    [SerializeField] private float roomWidth = 10f; // Largeur de la salle
-    [SerializeField] private float roomHeight = 10f; // Profondeur de la salle
-    [SerializeField] private Transform dungeonParent; // Un objet vide pour ranger le donjon
+    [SerializeField] private float roomWidth = 10f;
+    [SerializeField] private float roomHeight = 10f;
+    [SerializeField] private Transform dungeonParent;
 
     [Header("Prefabs des Salles (0 à 15)")]
     // L'index du tableau correspond à l'ID calculé par le bitmasking
@@ -131,6 +133,15 @@ public class DungeonManager : MonoBehaviour
         
         RoomManager.instance.SetCameraTarget();
         RoomManager.instance.EnterRoom(roomList[0].gameObject.GetComponent<BoxCollider2D>());
+
+        
+        if(gridManager != null)
+        {
+            int minX, minY, maxX, maxY;
+            CalculateDungeonBounds(out minX, out minY, out maxX, out maxY);
+            gridManager.CreatePathfindingGrid(minX, minY, maxX, maxY);
+        }
+        
     }
 
     private Room createRandomRoom(Room.Direction pDirection, Room currentRoom)
@@ -327,5 +338,41 @@ public class DungeonManager : MonoBehaviour
         }
 
         return id;
+    }
+
+    private void CalculateDungeonBounds(out int minWorldX, out int minWorldY, out int maxWorldX, out int maxWorldY)
+    {
+        if (roomTab.Count == 0)
+        {
+            minWorldX = minWorldY = maxWorldX = maxWorldY = 0;
+            return;
+        }
+
+        // Initialisation
+        float minRoomX = roomTab[0].x;
+        float maxRoomX = roomTab[0].x;
+        float minRoomY = roomTab[0].y;
+        float maxRoomY = roomTab[0].y;
+
+        // Recherche des limites
+        foreach (Room room in roomTab)
+        {
+            if (room.x < minRoomX) minRoomX = room.x;
+            if (room.x > maxRoomX) maxRoomX = room.x;
+            if (room.y < minRoomY) minRoomY = room.y;
+            if (room.y > maxRoomY) maxRoomY = room.y;
+        }
+
+        // Conversion en coordonnées World Space et ajout d'une marge
+        float marginX = (roomWidth / 2f) + 2f;
+        float marginY = (roomHeight / 2f) + 2f;
+
+        // On arrondit pour avoir des entiers stricts
+        minWorldX = Mathf.FloorToInt((minRoomX * roomWidth) - marginX);
+        maxWorldX = Mathf.CeilToInt((maxRoomX * roomWidth) + marginX);
+        minWorldY = Mathf.FloorToInt((minRoomY * roomHeight) - marginY);
+        maxWorldY = Mathf.CeilToInt((maxRoomY * roomHeight) + marginY);
+
+        //Debug.Log($"Limites du donjon calculées : X[{minWorldX} à {maxWorldX}] et Y[{minWorldY} à {maxWorldY}]");
     }
 }

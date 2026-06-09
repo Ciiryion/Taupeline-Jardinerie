@@ -35,7 +35,6 @@ Transform:
   m_Children:
   - {fileID: 3631260559133924302}
   - {fileID: 6995218067388823554}
-  - {fileID: 5256661737211384331}
   - {fileID: 6084684124184538230}
   - {fileID: 6230318981298537854}
   - {fileID: 5923786003856075633}
@@ -1739,7 +1738,6 @@ MonoBehaviour:
   spawnPointList:
   - {fileID: 3631260559133924302}
   - {fileID: 6995218067388823554}
-  - {fileID: 5256661737211384331}
   - {fileID: 6084684124184538230}
   - {fileID: 6230318981298537854}
   - {fileID: 5923786003856075633}
@@ -1756,7 +1754,7 @@ GameObject:
   - component: {fileID: 3573403749842504415}
   - component: {fileID: 8184424240096362911}
   - component: {fileID: 3500558856708227085}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Walls
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2480,37 +2478,6 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -4, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8704648190413896859}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5981960888740502310
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5256661737211384331}
-  m_Layer: 0
-  m_Name: EnnemisSpawnPoint (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5256661737211384331
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5981960888740502310}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
