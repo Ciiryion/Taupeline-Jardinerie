@@ -12,6 +12,8 @@ public class EnnemisBehaviour : ObjectBehaviour<EnnemisInstance, EnnemisState, E
         State.life = Data.maxLife;
 
         State.pathfinding = FindFirstObjectByType<Pathfinding>();
+
+        GameManager.RegisterEnemy();
     }
 
     private void Update()
@@ -99,6 +101,8 @@ public class EnnemisBehaviour : ObjectBehaviour<EnnemisInstance, EnnemisState, E
 
     private void IsDead()
     {
+        GameManager.UnregisterEnemy();
+
         Destroy(gameObject);
         return;
     }

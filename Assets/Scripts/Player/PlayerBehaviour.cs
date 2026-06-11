@@ -11,7 +11,8 @@ public class PlayerBehaviour : ObjectBehaviour<PlayerInstance, PlayerState, Play
     {
         rb = GetComponent<Rigidbody2D>();
         State.currentWeapon = Data.startingWeapon;
-        reload();
+        if (State.currentWeapon is ShootWeapon shootWeapon)
+            State.nbrBullet = shootWeapon.nbrBullet;
     }
 
     private void Update()
@@ -20,16 +21,44 @@ public class PlayerBehaviour : ObjectBehaviour<PlayerInstance, PlayerState, Play
         Vector2 lookDirection = (Vector2)mouseWorldPos - rb.position;
         State.targetAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
-        if (State.isAttacking && Time.time >= State.nextAttackTime && State.currentWeapon != null)
+        if(State.isAttacking && Time.time >= State.nextAttackTime && State.currentWeapon != null && !State.isReloading)
         {
             Attack();
         }
     }
-
     private void FixedUpdate()
     {
         MovePlayer();
         rb.rotation = State.targetAngle;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        KeyObject key = collision.gameObject.GetComponent<KeyObject>();
+        if (key != null)
+        {
+            Destroy(key.gameObject);
+            State.hasKey = true;
+            Debug.Log("Get Key");
+        }
+
+        DoorObject door = collision.gameObject.GetComponent<DoorObject>();
+        if (door != null)
+        {
+            if(State.hasKey)
+            {
+                Destroy(door.gameObject);
+            }
+        }
+
+        WeaponPicker weaponPick = collision.gameObject.GetComponent<WeaponPicker>();
+        if (weaponPick != null)
+        {
+            State.currentWeapon = weaponPick.weaponData;
+            if (weaponPick.weaponData is ShootWeapon shootWeapon)
+                State.nbrBullet = shootWeapon.nbrBullet;
+            Destroy(weaponPick.gameObject);
+        }
     }
 
     void MovePlayer()
@@ -65,8 +94,14 @@ public class PlayerBehaviour : ObjectBehaviour<PlayerInstance, PlayerState, Play
 
     public void reload()
     {
-        State.isReloading = true;
-        StartCoroutine(nameof(reloading));
+        if (State.isReloading) return;
+        if (State.currentWeapon is ShootWeapon shootWeapon)
+        {
+            if (State.nbrBullet == shootWeapon.nbrBullet) return;
+
+            State.isReloading = true;
+            StartCoroutine(nameof(reloading));
+        }
         
     }
 
@@ -74,8 +109,8 @@ public class PlayerBehaviour : ObjectBehaviour<PlayerInstance, PlayerState, Play
     {
         if (State.currentWeapon is ShootWeapon shootWeapon)
         {
-            State.nbrBullet = shootWeapon.nbrBullet;
             yield return new WaitForSeconds(shootWeapon.reloadTime);
+            State.nbrBullet = shootWeapon.nbrBullet;
             State.isReloading = false;
         }
     }
@@ -97,5 +132,11 @@ public class PlayerBehaviour : ObjectBehaviour<PlayerInstance, PlayerState, Play
     void OnAttack(InputValue value)
     {
         State.isAttacking = value.isPressed;
+    }
+
+    void OnReload(InputValue value)
+    {
+        if(value.isPressed)
+            reload();
     }
 }

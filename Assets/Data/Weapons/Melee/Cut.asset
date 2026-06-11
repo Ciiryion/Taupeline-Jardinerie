@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e54611dcacdb0849952971c8ed9eb0d, type: 3}
-  m_Name: Fists
+  m_Name: Cut
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
-  damageW: 3
-  tCritW: 5
-  dCritW: 10
+  damageW: 5
+  tCritW: 10
+  dCritW: 15
   attackSpeedW: 1
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8
-  rangeW: 0.5
+  sprite: {fileID: -8722967648577535633, guid: d89a2bc05b50f7a49bc46736536aac58, type: 3}
+  rangeW: 0.7

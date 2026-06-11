@@ -8,13 +8,14 @@ public abstract class Weapon : ScriptableObject
     public float dCritW;
     public float attackSpeedW;
     public LayerMask enemyLayer;
+    public Sprite sprite;
 
     public abstract void ExecuteAttack(Transform attackPoint);
 
     protected float CalculDamage()
     {
         bool isCrit = Random.value < (tCritW / 100);
-        Debug.Log("isCrit = " +  isCrit);
+        //Debug.Log("isCrit = " +  isCrit);
         float damage = damageW;
         if (isCrit)
             damage += damage * (dCritW / 100);

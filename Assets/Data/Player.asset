@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   walkSpeed: 5
-  startingWeapon: {fileID: 11400000, guid: 16587d6c0aa4e644388cc7e9afff8bf2, type: 2}
+  startingWeapon: {fileID: 11400000, guid: a96ee87849e56964b913a3cfdcf66a5a, type: 2}

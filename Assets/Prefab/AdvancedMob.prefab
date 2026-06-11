@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingOrder: 99
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.94716984, g: 0.36278385, b: 0.36278385, a: 1}
+  m_Color: {r: 0.86415094, g: 0.05706645, b: 0.05706645, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 386191335159782607}
   - component: {fileID: 8106985894366706290}
   m_Layer: 3
-  m_Name: Mob
+  m_Name: AdvancedMob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d782811fd47d77e4fb982b1132859849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnnemisInjector
-  dataToInject: {fileID: 11400000, guid: 34b47a45c511df749b75e728d8763022, type: 2}
+  dataToInject: {fileID: 11400000, guid: 96f6eb05be315454b9773b2a19e5adc2, type: 2}
 --- !u!50 &386191335159782607
 Rigidbody2D:
   serializedVersion: 5
@@ -217,7 +217,7 @@ CapsuleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.75, y: 0.5}
-  m_Direction: 1
+  m_Direction: 0
 --- !u!1 &2362910779333361304
 GameObject:
   m_ObjectHideFlags: 0

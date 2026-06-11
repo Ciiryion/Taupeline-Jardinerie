@@ -19,6 +19,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8
+  sprite: {fileID: -3817179436246727042, guid: d89a2bc05b50f7a49bc46736536aac58, type: 3}
   nbrBullet: 10
-  reloadTime: 3
+  reloadTime: 1.5
   bulletPrefab: {fileID: 6933927794012709915, guid: a9d14df0496a1804586fb1523c073216, type: 3}

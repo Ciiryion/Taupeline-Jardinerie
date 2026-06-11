@@ -10,4 +10,5 @@ public class PlayerState : ObjectState<PlayerData>
     public int nbrBullet;
     public float nextAttackTime;
     public bool isReloading;
+    public bool hasKey = false;
 }

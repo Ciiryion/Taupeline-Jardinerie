@@ -555,7 +555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   playerPrefab: {fileID: 6635695760567391135, guid: 7938996945cc472429082fccf3b2ddef, type: 3}
   gridManager: {fileID: 1665668351}
-  maxRoomNbr: 20
+  maxRoomNbr: 10
   probTaille: 6
   roomWidth: 12
   roomHeight: 12
@@ -579,6 +579,11 @@ MonoBehaviour:
   - {fileID: 8535252754140683099, guid: 9ef80750050c22247bc2f8b5314f830f, type: 3}
   keyPrefab: {fileID: 4287831556175605065, guid: 87ba86100a9b0db4eafd27f151dc9aad, type: 3}
   doorPrefab: {fileID: 1348969829040458001, guid: c0f58e385b66469418ac6616bad98f9a, type: 3}
+  stairsPrefab: {fileID: 5499732741244127999, guid: f867c6776b6bac04d9ff9fb9c13a39e1, type: 3}
+  shopWeaponDatas:
+  - {fileID: 11400000, guid: 764f9f3c7aef340489d01c6652532704, type: 2}
+  - {fileID: 11400000, guid: 16587d6c0aa4e644388cc7e9afff8bf2, type: 2}
+  pickupPrefab: {fileID: 231506946452857400, guid: bd9aa362e8b79ec439d34e8d3521cf99, type: 3}
 --- !u!1 &1636257294
 GameObject:
   m_ObjectHideFlags: 0

@@ -2533,7 +2533,9 @@ MonoBehaviour:
   - {fileID: 5483694465302507101}
   - {fileID: 7708875560382919998}
   - {fileID: 2345927098002444526}
-  prefMob: {fileID: 678822489345167525, guid: 5c90c776d25d31e4c9f43750e6083db5, type: 3}
+  prefMob:
+  - {fileID: 678822489345167525, guid: 5c90c776d25d31e4c9f43750e6083db5, type: 3}
+  - {fileID: 678822489345167525, guid: 04463a31125bf60418d27c29f6d898c0, type: 3}
 --- !u!1 &8709787641519407494
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,9 +24,16 @@ public class DungeonManager : MonoBehaviour
     [Space]
     [SerializeField] private GameObject keyPrefab;
     [SerializeField] private GameObject doorPrefab;
+    [SerializeField] private GameObject stairsPrefab;
+
+    [Header("Shop Items")]
+    [SerializeField] private Weapon[] shopWeaponDatas;
+    [SerializeField] private GameObject pickupPrefab;
 
     void Start()
     {
+        GameManager.ResetEnemyCount();
+
         roomTab = new List<Room>();
         roomList = new List<GameObject>();
         //Création de la room initiale
@@ -135,9 +142,21 @@ public class DungeonManager : MonoBehaviour
         GenerateVisualDungeon();
 
         // Instancier le joueur apres la generation des salles
-        GameObject player = Instantiate(playerPrefab, new Vector2(roomTab[0].x, roomTab[0].y), Quaternion.identity);
-        
-        RoomManager.instance.SetCameraTarget();
+        Vector2 startPosition = new Vector2(roomTab[0].x, roomTab[0].y);
+        if (GameManager.player == null)
+        {
+            GameObject player = Instantiate(playerPrefab, startPosition, Quaternion.identity);
+            DontDestroyOnLoad(player);
+        }
+        else
+        {
+            GameManager.player.transform.position = startPosition;
+            GameManager.player.State.hasKey = false;
+            GameManager.player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+        }
+
+
+            RoomManager.instance.SetCameraTarget();
         RoomManager.instance.EnterRoom(roomList[0].gameObject.GetComponent<BoxCollider2D>());
 
         
@@ -332,6 +351,18 @@ public class DungeonManager : MonoBehaviour
             // Instantiation de la porte du magasin
             if (room.type == Room.Type.Shop)
             {
+                if (shopWeaponDatas != null && shopWeaponDatas.Length > 0)
+                {
+                    int rndIdx = Random.Range(0, shopWeaponDatas.Length);
+                    Weapon selectedWeaponData = shopWeaponDatas[rndIdx];
+
+                    GameObject pickupObj = Instantiate(pickupPrefab, spawnPosition, Quaternion.identity, obj.transform);
+
+                    pickupObj.GetComponent<WeaponPicker>().Initialize(selectedWeaponData);
+
+                    Debug.Log("Here");
+                }
+
                 foreach (Room.Direction dir in room.sorties)
                 {
                     Vector3 doorPosition = spawnPosition;
@@ -443,5 +474,20 @@ public class DungeonManager : MonoBehaviour
 
         Debug.Log($"Shop en ({candidateRoom[0].x}, {candidateRoom[0].y}) avec {candidateRoom[0].sorties.Count} sorties");
         Debug.Log($"Clé en ({candidateRoom[1].x}, {candidateRoom[1].y}) avec {candidateRoom[1].sorties.Count} sorties");
+    }
+
+    private void OnEnable()
+    {
+        GameManager.OnFloorCleared += SpawnStairs;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnFloorCleared -= SpawnStairs;
+    }
+
+    private void SpawnStairs()
+    {
+        Instantiate(stairsPrefab, Vector3.zero, Quaternion.identity);
     }
 }
